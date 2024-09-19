@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "core/*": [ "./src/core/*" ],
+      "middleware/*": [ "./src/app/middleware/*" ],
+      "repositories/*": [ "./src/app/repositories/*" ],
+      "requests/*": [ "./src/app/requests/*" ],
+      "services/*": [ "./src/app/services/*" ],
+      "translations/*": [ "./src/app/translations/*" ],
+    },
+    "resolveJsonModule": true,
+    "outDir": "./pod",
+    "noImplicitAny": true,
+    "module": "ESNext",
+    "target": "es6",
+    "jsx": "react-jsx",
+    "allowJs": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  }
+}
