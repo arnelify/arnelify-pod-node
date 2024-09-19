@@ -19,13 +19,11 @@ Install to the folder that needs to be created:
 ```
 npx arnelify-pod setup AwesomeProject
 cd AwesomeProject
-npm install
 ```
 
 Install to the current folder:
 ```
 npx arnelify-pod setup
-npm install
 ```
 
 ## 🎉 Usage
@@ -36,6 +34,10 @@ cp .env.local .env
 Run Docker:
 ```
 docker compose up -d
+```
+Install dependencies:
+```
+npm install
 ```
 Compile pod:
 ```
