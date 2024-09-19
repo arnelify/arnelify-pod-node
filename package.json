@@ -2,11 +2,7 @@
   "name": "arnelify-pod",
   "version": "0.5.1",
   "description": "Framework for creating scalable microservices applications.",
-  "keywords": [
-    "arnelify",
-    "backend",
-    "pod"
-  ],
+  "keywords": [ "arnelify", "arnelify pod", "microservices", "backend" ],
   "author": "Arnelify",
   "license": "MIT",
   "main": "src/core/boot/index.js",
@@ -36,12 +32,12 @@
     "mime-db": "^1.53.0",
     "nodemon": "^3.1.4"
   },
-  "homepage": "https://github.com/arnelify/arnelify-pod#readme",
+  "homepage": "https://github.com/arnelify/arnelify-pod-node#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arnelify/arnelify-pod.git"
+    "url": "git+https://github.com/arnelify/arnelify-pod-node.git"
   },
   "bugs": {
-    "url": "https://github.com/arnelify/arnelify-pod/issues"
+    "url": "https://github.com/arnelify/arnelify-pod-node/issues"
   }
 }

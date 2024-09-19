@@ -29,6 +29,10 @@ npm install
 ```
 
 ## 🎉 Usage
+Create .env from .env.local:
+```
+cp .env.local .env
+```
 Run Docker:
 ```
 docker compose up -d
