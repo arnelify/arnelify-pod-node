@@ -29,6 +29,10 @@ npm install
 ```
 
 ## 🎉 Usage
+Run Docker:
+```
+docker compose up -d
+```
 Compile pod:
 ```
 npm run build
