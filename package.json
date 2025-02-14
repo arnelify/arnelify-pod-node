@@ -1,0 +1,42 @@
+{
+  "name": "arnelify-pod",
+  "version": "0.6.0",
+  "description": "BackEnd-framework for creating scalable microservices applications.",
+  "keywords": [
+    "arnelify",
+    "arnelify-pod",
+    "arnelify-pod-node",
+    "arnelify pod"
+  ],
+  "author": "Arnelify",
+  "license": "MIT",
+  "main": "src/core/boot/index.ts",
+  "bin": {
+    "arnelify-pod": "src/core/boot/index.ts"
+  },
+  "scripts": {
+    "build": "clear && src/core/boot/index.ts build && pkg pod/server.js --targets node18-linux-arm64 --output pod/server && rm pod/server.js",
+    "watch": "clear && src/core/boot/index.ts watch",
+    "migrate": "clear && src/core/boot/index.ts migrate",
+    "seed": "clear && src/core/boot/index.ts seed"
+  },
+  "dependencies": {
+    "arnelify-broker": "0.5.8",
+    "arnelify-router": "0.5.8",
+    "arnelify-server": "0.6.3",
+    "knex": "^3.1.0",
+    "mysql2": "^3.11.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.7",
+    "esbuild": "^0.25.0"
+  },
+  "homepage": "https://github.com/arnelify/arnelify-pod-node#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arnelify/arnelify-pod-node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/arnelify/arnelify-pod-node/issues"
+  }
+}

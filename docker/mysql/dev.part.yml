@@ -1,0 +1,30 @@
+  mysql:
+    container_name: mysql
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_MASTER_PASS}
+      - MYSQL_DATABASE=${MYSQL_MASTER_NAME}
+      - TZ=Europe/Kiev
+    volumes:
+      - ./docker/mysql/volumes/:/var/lib/mysql/
+    command: --default-authentication-plugin=caching_sha2_password
+    restart: unless-stopped
+    networks:
+      - arnelify-network
+    tty: true
+  pma:
+    container_name: pma
+    image: phpmyadmin:latest
+    environment:
+      - PMA_HOST=mysql
+      - PMA_USER=${MYSQL_MASTER_USER}
+      - PMA_PASSWORD=${MYSQL_MASTER_PASS}
+      - PMA_ARBITRARY=1
+    restart: always
+    networks:
+      - arnelify-network
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+    tty: true

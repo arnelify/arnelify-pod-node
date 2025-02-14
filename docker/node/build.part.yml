@@ -1,0 +1,27 @@
+  node:
+    container_name: node
+    build:
+      context: .
+      dockerfile: node.dockerfile
+    volumes:
+      - ./pod:/var/www/node/pod
+      - ./src:/var/www/node/src
+    healthcheck:
+      start_period: 10s
+      test: ["CMD", "curl", "-f", "http://localhost:3001"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1024M
+    restart: unless-stopped
+    networks:
+      - arnelify-network
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mysql
+    tty: true

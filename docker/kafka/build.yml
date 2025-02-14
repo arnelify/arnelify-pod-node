@@ -1,0 +1,19 @@
+  kafka:
+    container_name: kafka
+    image: wurstmeister/kafka:latest
+    volumes:
+      - ./docker/kafka/volumes:/kafka
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_CREATE_TOPICS: test-topic:1:1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKAJS_NO_PARTITIONER_WARNING: 1
+      KAFKA_NUM_PARTITIONS: 1
+    restart: unless-stopped
+    networks:
+      - arnelify-network
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    tty: true
