@@ -1,6 +1,6 @@
 <img src="https://static.wikia.nocookie.net/arnelify/images/c/c8/Arnelify-logo-2024.png/revision/latest?cb=20240701012515" style="width:336px;" alt="Arnelify Logo" />
 
-![Arnelify POD for C++](https://img.shields.io/badge/Arnelify%20POD%20for%20C++-0.6.0-yellow) ![C++](https://img.shields.io/badge/C++-2b-red) ![G++](https://img.shields.io/badge/G++-14.2.0-blue) ![NodeJS](https://img.shields.io/badge/NodeJS-22.13.1-green) ![Bun](https://img.shields.io/badge/Bun-1.2.0-green)
+![Arnelify POD for C++](https://img.shields.io/badge/Arnelify%20POD%20for%20C++-0.6.4-yellow) ![C++](https://img.shields.io/badge/C++-2b-red) ![G++](https://img.shields.io/badge/G++-14.2.0-blue) ![NodeJS](https://img.shields.io/badge/NodeJS-22.13.1-green) ![Bun](https://img.shields.io/badge/Bun-1.2.0-green)
 
 ## 🚀 About
 **Arnelify® POD for NodeJS** - is a BackEnd-framework for creating scalable microservices applications.
@@ -50,7 +50,7 @@ Join us to help improve this software, fix bugs or implement new functionality. 
 
 
 ## ⭐ Release Notes
-Version 0.6.0 - Integration with C and C++.
+Version 0.6.4 - ORM
 
 We are excited to introduce the Arnelify POD for C++ framework! Please note that this version is raw and still in active development.
 
@@ -60,6 +60,7 @@ Change log:
 * Replaced <a href="https://github.com/nodejs/node">node-http</a> with <a href="https://github.com/arnelify/arnelify-server-node">Arnelify Server</a>.
 * New <a href="https://github.com/arnelify/arnelify-router-node">Arnelify Router</a>
 * New <a href="https://github.com/arnelify/arnelify-broker-node">Arnelify Broker</a>
+* New <a href="https://github.com/arnelify/arnelify-orm-node">Arnelify ORM</a>
 * Added support for compiling code into a binary executable.
 * Significant refactoring and optimizations
 

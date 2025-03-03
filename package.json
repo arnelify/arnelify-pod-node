@@ -1,6 +1,6 @@
 {
   "name": "arnelify-pod",
-  "version": "0.6.0",
+  "version": "0.6.4",
   "description": "BackEnd-framework for creating scalable microservices applications.",
   "keywords": [
     "arnelify",
@@ -22,10 +22,9 @@
   },
   "dependencies": {
     "arnelify-broker": "0.5.8",
+    "arnelify-orm": "0.6.1",
     "arnelify-router": "0.5.8",
-    "arnelify-server": "0.6.3",
-    "knex": "^3.1.0",
-    "mysql2": "^3.11.3"
+    "arnelify-server": "0.6.3"
   },
   "devDependencies": {
     "@types/node": "^22.10.7",
