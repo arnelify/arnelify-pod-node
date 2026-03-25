@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
       "core/*": [ "./src/core/*" ],
       "middleware/*": [ "./src/app/middleware/*" ],
@@ -9,19 +8,25 @@
       "services/*": [ "./src/app/services/*" ],
       "translations/*": [ "./src/app/translations/*" ],
     },
-    "resolveJsonModule": true,
-    "outDir": "./pod",
-    "noImplicitAny": true,
-    "module": "ESNext",
-    "target": "es6",
-    "jsx": "react-jsx",
-    "allowJs": true,
-    "strict": true,
-    "esModuleInterop": true,
-    "moduleResolution": "node",
+    "allowJs": false,
     "allowSyntheticDefaultImports": true,
-    "isolatedModules": true
+    "baseUrl": ".",
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "outDir": "./dist",
+    "resolveJsonModule": true,
+    "rootDir": "./src",
+    "strict": true,
+    "target": "ES2020"
   },
+  "include": ["src"],
+  "exclude": ["tests", "node_modules", "pod"],
   "ts-node": {
     "compilerOptions": {
       "module": "commonjs",

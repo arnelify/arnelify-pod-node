@@ -47,7 +47,7 @@ class Logger {
    * @param {number} replace 
    */
   static primary(message: string, replace: number = 0): void {
-    Logger.log(message, '\x1b[0m', replace);
+    Logger.log(message, '\x1b[90m', replace);
   }
 
   /**

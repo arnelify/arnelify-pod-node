@@ -67,7 +67,9 @@ class ESBuild {
     platform: 'node',
     plugins: [],
     sourcemap: false,
-    tsconfig: './tsconfig.json'
+    tsconfig: './tsconfig.json',
+    packages: "external",
+    external: ["node_modules"],
   };
 
   /**

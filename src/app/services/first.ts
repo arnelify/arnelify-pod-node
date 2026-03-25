@@ -1,23 +1,31 @@
-import broker from "../../core/broker";
+import { BrokerCtx, BrokerBytes, RPCStream } from "arnelify-broker";
 import Logger from "core/logger";
-
-import Ctx from "core/broker/contracts/ctx";
 
 class First {
 
-  async welcome(ctx: Ctx): Promise<any> {
+  /**
+   * Welcome
+   * @param {BrokerCtx} ctx 
+   * @param {BrokerBytes} _bytes 
+   * @param {RPCStream} stream 
+   * @returns 
+   */
+  static async welcome(ctx: BrokerCtx, _bytes: BrokerBytes, stream: RPCStream): Promise<void> {
+    const { _state, params }: Record<string, any> = ctx;
+    const { body }: Record<string, any> = params;
 
-    const { params } = ctx;
-    
-    Logger.primary(`First: Hey, Second! Can you tell me what ${params.numbers.join(' + ')} equals? :)\n`);
-    
-    const secondResponse = await broker.call('second.welcome', ctx.params);
-    if (secondResponse.code !== 200) return secondResponse;
+    Logger.warning(`First: Hey, Second! Can you tell me what ${body.numbers.join(' + ')} equals? :)\n`);
 
-    const { response } = secondResponse.success
-    Logger.primary('First: Great, Second! Thanks a lot!\n');
-    
-    return response;
+    const { ctx: json }: Record<string, any> =
+      await stream.send_json('second.welcome', { _state, params });
+    if (json.code !== 200) {
+      stream.push_json(json.error);
+      return;
+    }
+
+    const { response } = json.success;
+    stream.push_json(response);
+    Logger.warning('First: Great, Second! Thanks a lot!\n');
   }
 }
 

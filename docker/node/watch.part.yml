@@ -4,13 +4,12 @@
       context: .
       dockerfile: node.dockerfile
     volumes:
-      - ./pod:/var/www/node/pod
-      - ./src:/var/www/node/src
+      - ./:/var/www/node
     restart: unless-stopped
     networks:
       - arnelify-network
     ports:
-      - "3001:3001"
+      - "3000:3000"
     depends_on:
       - mysql
     tty: true

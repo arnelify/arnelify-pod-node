@@ -45,27 +45,21 @@ class Boot {
     const projectPath: string = path.resolve(folder);
     const packagePath: string = path.resolve(__dirname, '../../../');
 
+    await Plant.mkdir(path.resolve(projectPath, 'src/app/locales'));
     await Plant.mkdir(path.resolve(projectPath, 'src/app/middleware'));
     await Plant.mkdir(path.resolve(projectPath, 'src/app/repositories'));
-    await Plant.mkdir(path.resolve(projectPath, 'src/app/requests'));
     await Plant.mkdir(path.resolve(projectPath, 'src/app/services'));
-    await Plant.mkdir(path.resolve(projectPath, 'src/app/translations'));
     await Plant.mkdir(path.resolve(projectPath, 'src/database/factories'));
     await Plant.mkdir(path.resolve(projectPath, 'src/database/migrations'));
     await Plant.mkdir(path.resolve(projectPath, 'src/database/seeds'));
-    await Plant.mkdir(path.resolve(projectPath, 'src/tests'));
 
-    await Plant.xcopy(packagePath, projectPath, (src: string): boolean => {
-      const exclude = [
-        path.resolve(projectPath, '.git'),
-        path.resolve(projectPath, 'node_modules'),
-      ];
+    const exclude: string[] = [
+      path.resolve(projectPath, '.git'),
+      path.resolve(projectPath, 'docker/mysql/volumes'),
+      path.resolve(projectPath, 'node_modules'),
+    ];
 
-      const isExcluded = exclude.includes(src);
-      if (isExcluded) return false;
-      return true;
-    });
-
+    await Plant.xcopy(packagePath, projectPath, exclude);
     Logger.success("Successfully!\n");
   }
 
@@ -107,27 +101,22 @@ class Boot {
   const { argv } = process;
   for (let i = 0; argv.length > i; ++i) {
 
-    const isSetup = argv[i] === 'setup';
-    if (isSetup) {
-      const folder: string = argv[i + 1] 
+    if (argv[i] === 'setup') {
+      const folder: string = argv[i + 1]
         && argv[i + 1].trim() ? argv[i + 1] : "NewProject";
       await Boot.setup(folder);
-      break;
+      return;
     }
 
-    const isBuild = argv[i] === 'build';
-    if (isBuild) {
+    if (argv[i] === 'build') {
       await Boot.build();
-      break;
+      return;
     }
 
-    const isWatch = argv[i] === 'watch';
-    if (isWatch) {
+    if (argv[i] === 'watch') {
       await Boot.watch();
-      break;
+      return;
     }
   }
-
-  return 0;
 
 })();

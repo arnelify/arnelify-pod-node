@@ -1,26 +1,32 @@
+import { BrokerCtx, BrokerBytes, RPCStream } from "arnelify-broker";
 import Logger from "core/logger";
-
-import Ctx from "core/broker/contracts/ctx";
 
 class Second {
 
-  welcome(ctx: Ctx): any {
+  /**
+   * Welcome
+   * @param {BrokerCtx} ctx 
+   * @param {BrokerBytes} _bytes 
+   * @param {RPCStream} stream 
+   * @returns 
+   */
+  static async welcome(ctx: BrokerCtx, _bytes: BrokerBytes, stream: RPCStream): Promise<void> {
+    const { _state, params }: Record<string, any> = ctx;
+    const { body } = params;
 
-    const { params } = ctx;
-
-    const result = params.numbers.reduce((a: number, b: number): number => a + b);
+    const result: number = body.numbers.reduce((sum: number, num: number): number => sum + num);
     const response = {
       code: 200,
       success: "Welcome to Arnelify POD framework."
     }
 
-    Logger.primary(`Second: Hi, First! The result of ${params.numbers.join(' + ')} is = ${result}.\n`);
-    Logger.primary(`Second: Here's your response: ${JSON.stringify(response)}\n`);
+    Logger.warning(`Second: Hi, First! The result of ${body.numbers.join(' + ')} is = ${result}.\n`);
+    Logger.warning(`Second: Here's your response: ${JSON.stringify(response)}\n`);
 
-    return {
+    stream.push_json({
       code: 200,
       success: { result, response }
-    };
+    });
   }
 }
 

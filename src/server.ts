@@ -1,80 +1,70 @@
 #!/usr/bin/env bun
 
-import ArnelifyRouter from "arnelify-router";
-import ArnelifyServer from "arnelify-server";
-
+import env from "core/env";
+import { Http1, Http1Ctx, Http1Stream } from "arnelify-server";
 import Logger from "core/logger";
-import routes from "./routes";
+
+import { RPC, rpc_actions } from "./rpc";
 
 /**
  * Main
  */
-(function main(): number {
-  const router: ArnelifyRouter = new ArnelifyRouter();
-  routes(router);
+(async function main(): Promise<void> {
 
-  const server: ArnelifyServer = new ArnelifyServer({
-    "SERVER_ALLOW_EMPTY_FILES": true,
-    "SERVER_BLOCK_SIZE_KB": 64,
-    "SERVER_CHARSET": "UTF-8",
-    "SERVER_GZIP": true,
-    "SERVER_KEEP_EXTENSIONS": true,
-    "SERVER_MAX_FIELDS": 1024,
-    "SERVER_MAX_FIELDS_SIZE_TOTAL_MB": 20,
-    "SERVER_MAX_FILES": 1,
-    "SERVER_MAX_FILES_SIZE_TOTAL_MB": 60,
-    "SERVER_MAX_FILE_SIZE_MB": 60,
-    "SERVER_PORT": 3001,
-    "SERVER_QUEUE_LIMIT": 1024,
-    "SERVER_UPLOAD_DIR": "./src/storage/upload"
+  const rpc: RPC = new RPC();
+  rpc_actions(rpc);
+
+  const http1: Http1 = new Http1({
+    allow_empty_files: env.HTTP3_ALLOW_EMPTY_FILES === 'true',
+    block_size_kb: Number(env.HTTP3_BLOCK_SIZE_KB),
+    charset: env.HTTP3_CHARSET,
+    compression: env.HTTP3_COMPRESSION === 'true',
+    keep_alive: Number(env.HTTP3_KEEP_ALIVE),
+    keep_extensions: env.HTTP3_KEEP_EXTENSIONS === 'true',
+    max_fields: Number(env.HTTP3_MAX_FIELDS),
+    max_fields_size_total_mb: Number(env.HTTP3_MAX_FIELDS_SIZE_TOTAL_MB),
+    max_files: Number(env.HTTP3_MAX_FILES),
+    max_files_size_total_mb: Number(env.HTTP3_MAX_FILES_SIZE_TOTAL_MB),
+    max_file_size_mb: Number(env.HTTP3_MAX_FILE_SIZE_MB),
+    port: Number(env.HTTP3_PORT),
+    storage_path: env.HTTP3_STORAGE_PATH,
+    thread_limit: Number(env.HTTP3_THREAD_LIMIT)
   });
 
-  server.setHandler(async (req: any, res: any): Promise<void> => {
-    const { _state } = req;
-    const { method, path } = _state;
-    const routeOpt = router.find(method, path);
-    if (!routeOpt) {
-      res.setCode(404);
-      res.addBody(JSON.stringify({
-        code: 404,
-        error: "Not found."
-      }));
-
-      res.end();
-      return;  
+  http1.logger(async (level: string, message: string): Promise<void> => {
+    switch (level) {
+      case 'success':
+        Logger.success(`${message}\n`);
+        break;
+      case 'info':
+        Logger.primary(`${message}\n`);
+        break;
+      case 'warning':
+        Logger.warning(`${message}\n`);
+        break;
+      default:
+        Logger.danger(`${message}\n`);
     }
-
-    res.setCode(200);
-    const route: {[key: string]: any} = routeOpt;
-    const controller: CallableFunction = router.getController(route.id);
-    
-    const params = { _state };
-    const ctx = { params };
-
-    const response: any = await controller(ctx);
-    const isObject: boolean = typeof response == "object";
-    if (!isObject) {
-      res.addBody(response);
-      res.end();
-      return;
-    }
-
-    const hasCode: boolean = response.hasOwnProperty("code")
-      && Number.isFinite(response["code"]);
-    if (hasCode) res.setCode(response["code"]);
-    res.addBody(JSON.stringify(response));
-    res.end();
   });
 
-  server.start((message: string, isError: boolean): void => {
-    if (isError) {
-      Logger.danger(`Error: ${message}\n`);
-      return;
-    }
+  http1.on('/', async (ctx: Http1Ctx, stream: Http1Stream): Promise<void> => {
+    const { ctx: json } = await rpc.send_json("first.welcome", ctx);
 
-    Logger.success(`${message}\n`);
+    await stream.set_code(200);
+    await stream.push_json(json);
+    await stream.end();
   });
 
-  return 0;
+  http1.on("_", async (_ctx: Http1Ctx, stream: Http1Stream): Promise<void> => {
+    await stream.set_code(404);
+    await stream.push_json({
+      code: 404,
+      error: "Not found."
+    });
+
+    await stream.end();
+  });
+
+  await http1.start();
 
 })();

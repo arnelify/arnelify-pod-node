@@ -1,13 +1,7 @@
 {
   "name": "arnelify-pod",
-  "version": "0.6.4",
-  "description": "BackEnd-framework for creating scalable microservices applications.",
-  "keywords": [
-    "arnelify",
-    "arnelify-pod",
-    "arnelify-pod-node",
-    "arnelify pod"
-  ],
+  "version": "1.0.3",
+  "description": "BackEnd-framework with UMQT support.",
   "author": "Arnelify",
   "license": "MIT",
   "main": "src/core/boot/index.ts",
@@ -21,14 +15,22 @@
     "seed": "clear && src/core/boot/index.ts seed"
   },
   "dependencies": {
-    "arnelify-broker": "0.5.8",
-    "arnelify-orm": "0.6.1",
-    "arnelify-router": "0.5.8",
-    "arnelify-server": "0.6.3"
+    "arnelify-broker": "1.0.3",
+    "arnelify-orm": "0.7.5",
+    "arnelify-server": "1.0.3"
   },
   "devDependencies": {
     "@types/node": "^22.10.7",
     "esbuild": "^0.25.0"
+  },
+  "pkg": {
+    "assets": [],
+    "scripts": [],
+    "options": [
+      "no-bytecode",
+      "public-packages",
+      "public"
+    ]
   },
   "homepage": "https://github.com/arnelify/arnelify-pod-node#readme",
   "repository": {
@@ -37,5 +39,19 @@
   },
   "bugs": {
     "url": "https://github.com/arnelify/arnelify-pod-node/issues"
-  }
+  },
+  "keywords": [
+    "arnelify",
+    "arnelify-pod",
+    "arnelify-pod-node",
+    "pod",
+    "backend",
+    "framework",
+    "microservices",
+    "tcp2",
+    "http3",
+    "webtransport",
+    "umqt",
+    "udp"
+  ]
 }

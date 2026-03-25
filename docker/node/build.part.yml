@@ -8,7 +8,7 @@
       - ./src:/var/www/node/src
     healthcheck:
       start_period: 10s
-      test: ["CMD", "curl", "-f", "http://localhost:3001"]
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
       interval: 10s
       timeout: 10s
       retries: 3
@@ -21,7 +21,7 @@
     networks:
       - arnelify-network
     ports:
-      - "3001:3001"
+      - "3000:3000"
     depends_on:
       - mysql
     tty: true
