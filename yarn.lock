@@ -146,10 +146,10 @@ arnelify-orm@0.7.5:
   dependencies:
     node-addon-api "^8.3.0"
 
-arnelify-server@1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/arnelify-server/-/arnelify-server-1.0.3.tgz#2b5ff0ec23133f15c9b39008b81abe437954c977"
-  integrity sha512-sMWqBRvVD/ivnQuOScOALyTveM8C59rFjwvDBzadKhdWmhIC32T27BkqynSxMrTT1NQxMaBZLVRrsuW86oJEIw==
+arnelify-server@1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/arnelify-server/-/arnelify-server-1.0.4.tgz#21fd6c49c25143890cc12d175a1de945adcdfe27"
+  integrity sha512-NHriD6rMN78WPJN1eC+HkhzvWjyZCBss2Wk1DnjYeK3fXU74h68F3RIwP1/0sISfn92icgYI5PdTc8nSlH+zKg==
 
 esbuild@^0.25.0:
   version "0.25.0"

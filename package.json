@@ -1,6 +1,6 @@
 {
   "name": "arnelify-pod",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "BackEnd-framework with UMQT support.",
   "author": "Arnelify",
   "license": "MIT",
@@ -17,7 +17,7 @@
   "dependencies": {
     "arnelify-broker": "1.0.3",
     "arnelify-orm": "0.7.5",
-    "arnelify-server": "1.0.3"
+    "arnelify-server": "1.0.4"
   },
   "devDependencies": {
     "@types/node": "^22.10.7",
@@ -44,6 +44,8 @@
     "arnelify",
     "arnelify-pod",
     "arnelify-pod-node",
+    "nodejs",
+    "bun",
     "pod",
     "backend",
     "framework",
