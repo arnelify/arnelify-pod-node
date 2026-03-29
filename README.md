@@ -1,6 +1,6 @@
 <img src="https://static.wikia.nocookie.net/arnelify/images/c/c8/Arnelify-logo-2024.png/revision/latest?cb=20240701012515" style="width:336px;" alt="Arnelify Logo" />
 
-![Arnelify POD for NodeJS](https://img.shields.io/badge/Arnelify%20POD%20for%20NodeJS-1.0.4-yellow) ![NodeJS](https://img.shields.io/badge/NodeJS-24.13.1-green) ![Bun](https://img.shields.io/badge/Bun-1.3.6-green)
+![Arnelify POD for NodeJS](https://img.shields.io/badge/Arnelify%20POD%20for%20NodeJS-1.0.5-yellow) ![NodeJS](https://img.shields.io/badge/NodeJS-24.13.1-green) ![Bun](https://img.shields.io/badge/Bun-1.3.6-green)
 
 ## 🚀 About
 **Arnelify® POD for NodeJS** - is a BackEnd-framework with UMQT support.
@@ -67,7 +67,7 @@ Join us to help improve this software, fix bugs or implement new functionality. 
 
 
 ## ⭐ Release Notes
-Version 1.0.4 - is a BackEnd-framework with UMQT support.
+Version 1.0.5 - is a BackEnd-framework with UMQT support.
 
 We are excited to introduce the Arnelify POD for NodeJS framework! Please note that this version is raw and still in active development.
 
